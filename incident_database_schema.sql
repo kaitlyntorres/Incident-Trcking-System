@@ -79,6 +79,27 @@ CREATE TABLE caseHistory (
 	FOREIGN KEY (handler) REFERENCES regUser(username)
 );
 
+/********** UNSURE IF WE NEED ALL THESE INDEXES BECAUSE I KNOW THEY CAN ADD OVERHEAD *********/
+
+/**** Primary Key Indexes ****/
+CREATE INDEX pk_regUser_index ON regUser (username ASC);
+CREATE INDEX pk_category_index ON category (category_id ASC);
+CREATE INDEX pk_incident_index ON incident (incident_id ASC);
+CREATE INDEX pk_tag_index ON tags (tag_id ASC);
+CREATE INDEX pk_caseHistory_index ON caseHistory (update_id ASC);
+
+/**** Foreign Key Indexes ****/
+CREATE INDEX fk_incident_category_index ON incident (category_id ASC);
+CREATE INDEX fk_incident_point_of_contact_index ON incident (point_of_contact ASC);
+CREATE INDEX fk_incident_current_assignee_index ON incident (current_assignee ASC);
+CREATE INDEX fk_tags_incident_id_index ON tags (incident_id ASC);
+CREATE INDEX fk_caseHistory_incident_id_index ON caseHistory (incident_id ASC);
+CREATE INDEX fk_caseHistory_handler_index ON caseHistory (handler ASC);
+
+/**** Other Various Indexes ****/
+CREATE INDEX regUser_lastname_index ON regUser (lastname ASC);
+CREATE INDEX incident_date_created_index ON incident (date_created DESC);
+CREATE INDEX caseHistory_time_of_update_index ON caseHistory (time_of_update DESC);
 
 /**** View for all Incident Information
  * Incident ID, Date created, Date resolved, State, Category, Description, Point of contact, 
