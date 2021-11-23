@@ -35,16 +35,16 @@ CREATE TABLE incident (
 	incident_id			varchar(10),
 	category_id			varchar(10),
 	description			varchar(4000),
-	date_created		date NOT NULL,
-	date_resolved		date,
+	date_created			date NOT NULL,
+	date_resolved			date,
 	state				varchar(7) NOT NULL,
-	point_of_contact	varchar(20) NOT NULL,
-	current_assignee	varchar(20) NOT NULL,
-	PRIMARY KEY (incident_id)
+	point_of_contact		varchar(20) NOT NULL,
+	current_assignee		varchar(20) NOT NULL,
+	PRIMARY KEY 	(incident_id)
 	FOREIGN KEY	(category_id) REFERENCES category(category_id)
-	FOREIGN KEY (point_of_contact) REFERENCES regUser(username)
-	FOREIGN KEY (current_assignee) REFERENCES regUser(username)
-	CHECK (state in('open', 'closed', 'stalled'))
+	FOREIGN KEY 	(point_of_contact) REFERENCES regUser(username)
+	FOREIGN KEY 	(current_assignee) REFERENCES regUser(username)
+	CHECK (state in ('open', 'closed', 'stalled'))
 );
 
 
@@ -57,8 +57,8 @@ CREATE TABLE tags (
 	tag_id			varchar(10),
 	incident_id		varchar(10) NOT NULL,
 	tag 			varchar(100) NOT NULL,
-	PRIMARY KEY (tag_id),
-	FOREIGN KEY (incident_id) REFERENCES incident(incident_id)
+	PRIMARY KEY 	(tag_id),
+	FOREIGN KEY 	(incident_id) REFERENCES incident(incident_id)
 );
 
 
@@ -72,11 +72,11 @@ CREATE TABLE caseHistory (
 	update_id 		varchar(10),
 	incident_id		varchar(10) NOT NULL,
 	comment			varchar(100) NOT NULL,
-	time_of_update	timestamp NOT NULL,
+	time_of_update		timestamp NOT NULL,
 	handler			varchar(20),
-	PRIMARY KEY (update_id),
-	FOREIGN KEY (incident_id) REFERENCES incident(incident_id)
-	FOREIGN KEY (handler) REFERENCES regUser(username)
+	PRIMARY KEY 	(update_id),
+	FOREIGN KEY 	(incident_id) REFERENCES incident(incident_id)
+	FOREIGN KEY 	(handler) REFERENCES regUser(username)
 );
 
 /********** UNSURE IF WE NEED ALL THESE INDEXES BECAUSE I KNOW THEY CAN ADD OVERHEAD *********/
