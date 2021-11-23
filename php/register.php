@@ -15,11 +15,11 @@ $result=mysql_query($conn,$sql);
 if($result){
   echo "Successful";
   echo "<BR>";
-  echo "<a href='signin.html'>Lets Login</a>";
-  }
+  echo "<a href='../html/signin.html'>Lets Login</a>";
+  } 
   else {
   echo "ERROR";
   }
   // close connection
   mysql_close();
-  ?>
+?>
