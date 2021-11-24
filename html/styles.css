@@ -16,7 +16,7 @@ body {
 	margin: 0 auto;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
-	color: #820000;
+	color: #1E7587;
 }
 
 ul.level1 {
@@ -46,26 +46,28 @@ ul.level1 {
 	align-items: center;
 	vertical-align: middle;
 	justify-content: center;
+	font-weight: bold;
+	font-size: 16px;
 }
 
 .menuitem:link {
-	color: #666666;
+	color: #991717;
 	text-decoration: none;
 }
 
 .menuitem:visited {
-	color: #666666;
+	color: #991717;
 	text-decoration: none;
 }
 
 .menuitem:hover {
-	color: #666666;
+	color: #991717;
 	text-decoration: none;
-	text-shadow: #666666 0 0 .2em;
+	text-shadow: #A2A2A2 0 0 .2em;
 }
 
 .menuitem:active {
-	color: #666666;
+	color: #991717;
 	text-decoration: none;
 }
 
@@ -95,6 +97,23 @@ h1 {
 	
 }
 
+.homepage_div {
+	display: inline-block;
+	padding: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+
+.news_div {
+	background-color: #E4ECEE;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-top: 5px;
+	border-radius: 10px;
+	border: 2px solid #1E7587;
+}
+
 .ticket_detail_div {
 	display: inline-block;
 	padding: 10px;
@@ -102,7 +121,8 @@ h1 {
 
 .ticket_div {
 	display: block;
-	background-color: #CCCCCC;
+	background-color: #E4ECEE;
+	border: 2px solid #1E7587;
 	width: 500px;
 	height: auto;
 	align-items: center;
@@ -111,7 +131,7 @@ h1 {
 	margin: 0 auto;
 	border-radius: 10px;
 	padding: 20px;
-	box-shadow: 4px 3px 8px 1px #272b35;
+	box-shadow: 4px 3px 8px 1px #A2A2A2;
 	font-family: 'Open Sans', sans-serif;
 }
 
@@ -191,4 +211,45 @@ input {
 	resize: horizontal;
 	width: 175px;
 	height: 25px;
+}
+
+.ticket_table {
+	border: 2px solid #1E7587;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.ticket_table_head {
+	background-color: #B1CFD6;
+	border-collapse: collapse;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.ticket_table_body {
+	padding: 10px;
+}
+
+.ticket_table_row {
+	line-height: 30px;
+}
+
+.ticket_table_row:nth-child(even) {
+	background-color: #E4ECEE;
+}
+
+.ticket_table_row:hover {
+	background-color: #CADFE3;
+}
+
+
+.edititem:link {
+	color: #1E7587;
+}
+
+.edititem:visited {
+	color: #1E7587;
+}
+
+.edititem:active {
+	color: blue;
 }
