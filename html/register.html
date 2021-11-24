@@ -7,8 +7,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 </head>
 
-<form action="../php/register.php" method="POST">
-
 <div class="register_form">
 <h2 style="color:white; size:22px;">Welcome to the Issue Tracking System</h2>
 	<img src="../assets/computer_logo.png" alt="loginpic" class="loginpic"
@@ -16,20 +14,20 @@
 	height="150"/>
 
 	<div class="register_div">
-		<h3>CREATE AN ACCOUNT<h3>
-		<p><input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/></p>
-		<p><input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/></p>
-		<p><input type="text" class="username" placeholder="Username" size="25" maxlength="100" id="username" required/></p>
-		<p><input type="password" class="password" placeholder="Password" size="25" maxlength="25" id="password" required/></p>
-		<button type="submit" class="medium-button">Register</button>
-		<p>Already Registered? <a href="signin.html">Sign in</a></p>
+		<form action="#" method="post">
+			<h3>CREATE AN ACCOUNT<h3>
+			<p><input type="text" name="firstname" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/></p>
+			<p><input type="text" name="lastname" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/></p>
+			<p><input type="text" name="username" class="username" placeholder="Username" size="25" maxlength="100" id="username" required/></p>
+			<p><input type="password"  name="password" class="password" placeholder="Password" size="25" maxlength="25" id="password" required/></p>
+			<p><input type="submit" value = "submit"/></p>
+			<p>Already Registered? <a href="signin.html">Sign in</a></p>
+		</form>
 	<div style="color:White;text-align:right;font-family:'Open Sans';font-size:12px">
 			SICK 2021
 	</div>
 	</div>
 </div>
-
-</form>
     
 </html>
   
