@@ -1,49 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 </head>
-<style type = "text/css">
-  img.loginpic{
-    border-radius:50%;
-    text-align:center;
-    width: 25%;
-  }
-  body{
-    background-color: navy;
-    color:white;
-    text-align:center;
-  }
-  a{
-    color:deepskyblue;
-  }
-</style>
 
+<form action="../php/register.php" method="POST">
 
-  
-<div class="loginform">
-<form action="register.php" method="POST">>
-  
-    <h1>Welcome to the Issue Tracking System</h1>
-    <img src="p.jpg" alt="loginpic" class="loginpic">
-  <p>Fill out form to register or press the <b> Sign In </b> button down below</p>
-    <p>&#160;</p>
-    <p><b>Enter First Name: </b></p>
-    <p><input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/></p>
-    <p><b>Enter Last Name: </b></p>
-    <p><input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/></p>
-    <p><b>Enter Username: </b></p>
-    <p><input type="text" class="username" placeholder="Username" size="25" maxlength="100" id="username" required/></p>
-    <p><b>Enter Password: </b></p>
-    <p><input type="password" class="password" placeholder="Password" size="25" maxlength="25" id="password" required/></p>
-    <button type="submit" class="register">Register</button>
-    <p>&#160;</p>
-    <p>Already Registered? <a href="signup.html">Sign in</a> down below!</p>
+<div class="register_form">
+<h2 style="color:white; size:22px;">Welcome to the Issue Tracking System</h2>
+	<img src="../assets/computer_logo.png" alt="loginpic" class="loginpic"
+	width="150"
+	height="150"/>
 
-
-
-    </div>
-
+	<div class="register_div">
+		<h3>CREATE AN ACCOUNT<h3>
+		<p><input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/></p>
+		<p><input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/></p>
+		<p><input type="text" class="username" placeholder="Username" size="25" maxlength="100" id="username" required/></p>
+		<p><input type="password" class="password" placeholder="Password" size="25" maxlength="25" id="password" required/></p>
+		<button type="submit" class="medium-button">Register</button>
+		<p>Already Registered? <a href="signin.html">Sign in</a></p>
+	<div style="color:White;text-align:right;font-family:'Open Sans';font-size:12px">
+			SICK 2021
+	</div>
+	</div>
+</div>
 
 </form>
     

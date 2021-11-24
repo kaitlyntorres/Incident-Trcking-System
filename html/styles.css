@@ -1,0 +1,83 @@
+body {
+	background-color: #003366;
+}
+
+h1 {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+.login_div {
+	display: block;
+	background-color: #CCCCCC;
+	width: 325px;
+	height: 225px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #272b35;
+}
+
+.login_in {
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	width: 300px;
+	padding: 5px;
+	margin: 5px;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+.register_form {
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+#first {
+	float: left;
+}
+
+.register_div {
+	font-family: 'Open Sans', sans-serif;
+	overflow: hidden;
+	display: block;
+	background-color: #CCCCCC;
+	width: 325px;
+	height: 375px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #272b35;
+}
+
+
+
+.small-button {
+	width: 50px;
+	height: 25px;
+}
+
+.medium-button {
+	width: 275px;
+	height: 35px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	background-color: #E78035;
+}
+
+input {
+	resize: horizontal;
+	width: 175px;
+	height: 25px;
+}
