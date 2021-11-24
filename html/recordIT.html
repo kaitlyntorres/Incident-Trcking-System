@@ -1,58 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Outfit">
 </head>
-<style type = "text/css">
-     body{
-    background-color: navy;
-    color:white;
-    text-align:center;
-  }
-  .Logout{
-    position:absolute;
-    right:100px;
-    top:50px;
-    height: 5%;
-    width:15;
-    font-size: 16px;
 
+<div class="wrapper">
+<!-- HEADER STARTS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
+<header class="page_header">
+<div style="align-items: center;">
+<table style="padding-left: 20px; padding-right: 20px; text-align: center;">
+	<tr>
+		<td style="padding-left: 20px; padding-right: 20px;">
+		<p><img src="../assets/computer_logo.png" alt="computerlogo" width="125" height="125"/></p>
+		</td>
+		<td style="padding-left: 20px; padding-right: 20px;">
+			<h2>Welcome to the SICK Issue Tracking System</h2>
+		</td>
+		<td style="padding-left: 20px; padding-right: 20px;">
+			<img src="../assets/SICKlogo.png" alt="SICKlogo" width="125" height="75"/></p>
+		</td>
+	</tr>
+</table>
+</div>
 
-  }
-  </style>
-  <body>
-    <div class="loginform">
+<div class="menu" id="menu">
+<ul class="level1">
+	<li><a class="menuitem" title="Home" href="homepage.html">Home</a></li>
+	<li><a class="menuitem" title="Create Ticket" href="recordIT.html">Create New Ticket</a></li>
+	<li><a class="menuitem" title="View Tickets" href="viewtickets.html">View Tickets</a></li>
+	<li><a class="menuitem" title="Reports" href="viewreports.html">Reports</a></li>
+	<li><a class="menuitem" title="Logout" href="signin.html">Logout</a></li>
+</ul>
+</div>
+
+</header>
+<!-- HEADER ENDS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
+
+<p></p>
+<p></p>
+
         <form action="" method="POST">
-            <h1>Record new IT Ticket: </h1>
-            <p><b>Enter First Name: </b></p>
-            <p><input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/></p>
-            <p><b>Enter Last Name: </b></p>
-            <p><input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/></p>
-            <p><b>Enter Date of Submission: </b></p>
-            <p><input type="date" class="date"  min="2020-01-01"  id="date" required/></p>
-            <p><b>Enter Name of IT Ticket: </b></p>
-            <p><input type="text" class="title" placeholder="Name of Ticket" size="25" maxlength="100" id="title" required/></p>
-            <p><b>Enter Approximate Occurence of IT Ticket: </b></p>
-            <select id="occurence" name="occurence">
-                <option value="25%">25%</option>
-                <option value="50%">50%</option>
-                <option value="75%">75%</option>
-                <option value="100%">100%</option>
-              </select>
-            <p><b>Enter Additional Notes: </b></p>
-            <textarea name="notes" rows="10" cols="35"> 
-                </textarea>
-            <p><b>Add any Files: </b></p>    
-            <label for="file">Select a file:</label>
-            <input type="file" id="file" name="myfile"> 
-            <p>&#160;</p>
-            
-            <input type="submit">
-            </form>
-            <form action="register.html">
-              <button class="Logout">Logout</button>
-           </form>
+	<div class="ticket_div">
+		<h2>IT Service Ticket</h2>
+		<div class="ticket_detail_div">
+			Name
+			<input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/>
+			<input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/>
+		</div>
+		<div class="ticket_detail_div">
+			Date
+			<input type="date" class="date"  min="2020-01-01"  id="date" required/></p>
+		</div>
+		<div class="ticket_detail_div">
+			Ticket Category
+				<select id="category" name="category">
+				<option value="hardware">Hardware</option>
+				<option value="software">Software</option>
+				<option value="customer">Customer Services</option>
+				<option value="product">Production</option>
+				<option value="other">Other</option>
+				</select>
+		</div>	
+		<div class="ticket_detail_div">
+			Title
+			<input type="text" class="title" placeholder="Summary of Ticket" size="25" maxlength="100" id="title" required/>	
+			<p>Details</p>
+			<p><textarea name="notes" rows="10" cols="35"></textarea></p>
+		</div>
+		
+		<div class="ticket_detail_div">
+			Approximate Occurence of IT Ticket
+				<select id="occurence" name="occurence">
+				<option value="25%">25%</option>
+				<option value="50%">50%</option>
+				<option value="75%">75%</option>
+				<option value="100%">100%</option>
+				</select>
+		</div>		
+		<div class="ticket_detail_div">
+			<label for="file">Select a file:</label>
+			<input type="file" id="file" name="myfile">
+			<input type="submit" class="medium-button">
+		</div>
+	</div>
+	</form>
 
 
-
-  </body>
+</div>
+</html>

@@ -2,10 +2,120 @@ body {
 	background-color: #003366;
 }
 
+
+.page_header {
+	background-color: white;
+	display: block;
+	height: auto;
+	min-width: 120px;
+	width: auto;
+	align-items: center;
+	color: #fff;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #820000;
+}
+
+ul.level1 {
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 30px;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	align: center;
+	text-shadow: none;
+}
+
+.menu {
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	height: 25px;
+	background-image: linear-gradient(white, #EAEAEA);
+	padding: 20px;
+	display: flex;
+}
+
+#menu li {
+	display: inline;
+	padding: 30px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+}
+
+.menuitem:link {
+	color: #666666;
+	text-decoration: none;
+}
+
+.menuitem:visited {
+	color: #666666;
+	text-decoration: none;
+}
+
+.menuitem:hover {
+	color: #666666;
+	text-decoration: none;
+	text-shadow: #666666 0 0 .2em;
+}
+
+.menuitem:active {
+	color: #666666;
+	text-decoration: none;
+}
+
+
+ul.level1 {
+	display: table;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
 h1 {
 	font-size: 14px;
 	font-family: 'Open Sans', sans-serif;
 }
+
+.wrapper {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 960PX;
+	padding: 20px;
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	background-color: white;
+	
+}
+
+.ticket_detail_div {
+	display: inline-block;
+	padding: 10px;
+}
+
+.ticket_div {
+	display: block;
+	background-color: #CCCCCC;
+	width: 500px;
+	height: auto;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #272b35;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
 .login_div {
 	display: block;
 	background-color: #CCCCCC;
@@ -60,6 +170,7 @@ h1 {
 	padding: 20px;
 	box-shadow: 4px 3px 8px 1px #272b35;
 }
+
 
 
 
