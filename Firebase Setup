@@ -1,0 +1,8 @@
+Do the following:
+pip install git+https://github.com/ozgur/python-firebase
+pip install gcloud
+pip install sseclient
+pip install pycrypto
+pip install requests-toolbelt
+
+Follow this video if you get an async error: https://www.youtube.com/watch?v=QmskD6utEuI&ab_channel=CodeExtended

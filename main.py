@@ -2,8 +2,54 @@
 #Hi everyone :D
 
 from flask import Flask, redirect, url_for, render_template, request  #Vital for setting up the websites.
-
+from firebase import firebase #Firebase database :D
 ticketWebsite = Flask(__name__) #Create the website
+
+users = firebase.FirebaseApplication("https://testing-7f9ce-default-rtdb.firebaseio.com/", None) #Connect to the users database
+tickets = firebase.FirebaseApplication("https://it-tickets-51e5b-default-rtdb.firebaseio.com/", None) #Connect to the tickets database
+entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "") #Get the entire dictionary set
+entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
+
+#11/27/2021, Let's work on signing up to the database.
+
+#This will get the specified user key to use for identifying and getting username/password
+# def getUserIdentifier(username): #Trying to get the username identifier by passing the username as a parameter and going through the dict
+#     for key in entireUserDatabase: #Go through the dictionary
+#         if entireUserDatabase[key]["username"] == username: #If the username is equal to a username, then return that key.
+#             return key
+#     return False
+
+def correctUsernamePassword(username, password):
+    for key in entireUserDatabase: #Search the entire database for the user and password
+        if entireUserDatabase[key]["username"] == username and entireUserDatabase[key]["password"] == password: #If they match...
+            return True #Return true!
+    return False #Or not...
+
+#Add user will add a singular user to the database via the registration page.
+#Duplicate usernames will not be allowed.
+def addUser(firstName, lastName, username, password):
+    global entireUserDatabase
+    try: #Try to search the entire dictionary for the user
+        for keys in entireUserDatabase:
+            if entireUserDatabase[keys]["username"] == username: #Check to see if the name is already taken
+                return False #Return a message, replace with redirect.
+    except TypeError:
+        print("Database is empty exception.")
+
+    user = { #Add the user parameters here
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "password": password,
+        "admin": False
+    }  # Example from the IT sign up page
+
+    users.post("testing-7f9ce-default-rtdb", user)  # Add the user to the database
+    entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")  # Update the dictionary
+    return True
+
+
+
 
 @ticketWebsite.route("/") #Homepage
 def defaultPage():
@@ -13,18 +59,31 @@ def defaultPage():
 def homePage():
     return render_template("homepage.html") #Renders the document.
 
-@ticketWebsite.route("/signin.html") #Sign In
+@ticketWebsite.route("/signin.html", methods=["POST", "GET"]) #Sign In, needs POST/GET for retrieving the password
 def signInPage():
-    return render_template("signin.html") #Renders the document.
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"] #Get the username and password
+        if correctUsernamePassword(username, password): #Correct username/password
+            return redirect(url_for("homePage"))
+        else: #Incorrect username/password
+            return redirect(url_for("signInPage"))
+    else:
+        return render_template("signin.html") #Renders the document by default.
 
 @ticketWebsite.route("/register.html", methods=["POST", "GET"]) #Register, POST is returning the information, GET, well that gets the information
 def registerPage():
     if request.method == "POST":
         print("Hey everyone :)")
-        # firstName = request.form["firstname"] This code retrieves user data via the name.
-        # lastName = request.form["lastname"]
-        # userName = request.form["username"]
-        # password = request.form["password"]
+        firstName = request.form["firstname"] #This code retrieves user data via the firstname.
+        lastName = request.form["lastname"] #This code retrieves user data via the lastname.
+        userName = request.form["username"] #This code retrieves user data via the username.
+        password = request.form["password"] #This code retrieves user data via the password.
+        success = addUser(firstName, lastName, userName, password)
+        if success:
+            return redirect(url_for("signInPage")) #Send the user to the register page to sign in
+        else:
+            return redirect(url_for("registerPage")) #If registration fails, refresh the page.
     else:
         return render_template("register.html") #Renders the document.
 
