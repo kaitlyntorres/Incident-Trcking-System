@@ -1,4 +1,4 @@
-Do the following:
+Do the following in order:
 pip install python-firebase
 pip install gcloud
 pip install sseclient
