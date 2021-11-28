@@ -48,12 +48,12 @@
 		<h2>IT Service Ticket</h2>
 		<div class="ticket_detail_div">
 			Name
-			<input type="text" name="firstname" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/>
-			<input type="text" name ="lastname" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/>
+			<input type="text" class="firstname", name="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/>
+			<input type="text" class="lastname", name="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/>
 		</div>
 		<div class="ticket_detail_div">
 			Date
-			<input type="date" class="date"  min="2020-01-01"  id="date" required/></p>
+			<input type="date", name="date" class="date"  min="2020-01-01"  id="date" required/></p>
 		</div>
 		<div class="ticket_detail_div">
 			Ticket Category
@@ -71,11 +71,9 @@
 			<p><textarea name="notes" rows="10" cols="50"></textarea></p>
 		</div>
 		<div class="ticket_detail_div">
-			<p>Tags</p>
-			<p><textarea name="tags" rows="1" cols="50"></textarea></p>
-		</div>
-		
-				
+		<p>Tags</p>
+		<p><textarea name="tags" rows="1" cols="50"></textarea></p>
+    </div>
 		<div class="ticket_detail_div">
 			<input type="submit" class="medium-button">
 		</div>
