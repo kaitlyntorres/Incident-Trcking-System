@@ -1,6 +1,6 @@
 
 /**** Table of registered users
- * 		Username, First name, Last name, Password, and Email
+ * 		Username, First name, Last name, and Password
  * 		PK = Username
  *  ****/
 CREATE TABLE regUser (
@@ -8,7 +8,6 @@ CREATE TABLE regUser (
 	firstname		varchar(100) NOT NULL,
 	lastname		varchar(100) NOT NULL,
 	password		varchar(20) NOT NULL,
-	email			varchar(100) UNIQUE,
 	PRIMARY KEY	(username)
 );
 
