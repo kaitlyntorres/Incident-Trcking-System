@@ -1,5 +1,5 @@
 Do the following:
-pip install git+https://github.com/ozgur/python-firebase
+pip install python-firebase
 pip install gcloud
 pip install sseclient
 pip install pycrypto
