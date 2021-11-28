@@ -64,7 +64,6 @@
 				<option value="product">Production</option>
 				<option value="other">Other/Miscellaneous</option>
 				</select>
-		<button type="button">Add New Category</button>
 		</div>	
 		<div class="ticket_detail_div">
 			<p>Details</p>

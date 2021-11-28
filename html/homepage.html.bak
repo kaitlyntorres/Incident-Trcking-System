@@ -48,7 +48,6 @@
 		<h1 style="color:#1E7587;">11/24/2021</h1>
 		<p><b>Need to do:</p></b>
 		<p>MUSTS:</p>
-		<p>Login needs to work</p>
 		<p>Tickets need to auto generate a ticket id</p>
 		<p>View Tickets table needs to connect to database</p>
 		<p>Editing tickets needs to connect to the database, and needs to have a submittable form like the create ticket screen</p>
