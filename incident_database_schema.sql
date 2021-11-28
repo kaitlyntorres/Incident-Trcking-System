@@ -40,10 +40,10 @@ CREATE TABLE incident (
 	state				varchar(7) NOT NULL,
 	point_of_contact		varchar(20) NOT NULL,
 	current_assignee		varchar(20) NOT NULL,
-	PRIMARY KEY 	(incident_id)
-	FOREIGN KEY	(category_id) REFERENCES category(category_id)
-	FOREIGN KEY 	(point_of_contact) REFERENCES regUser(username)
-	FOREIGN KEY 	(current_assignee) REFERENCES regUser(username)
+	PRIMARY KEY 	(incident_id),
+	FOREIGN KEY	(category_id) REFERENCES category(category_id),
+	FOREIGN KEY 	(point_of_contact) REFERENCES regUser(username),
+	FOREIGN KEY 	(current_assignee) REFERENCES regUser(username),
 	CHECK (state in ('open', 'closed', 'stalled'))
 );
 
@@ -75,7 +75,7 @@ CREATE TABLE caseHistory (
 	time_of_update		timestamp NOT NULL,
 	handler			varchar(20),
 	PRIMARY KEY 	(update_id),
-	FOREIGN KEY 	(incident_id) REFERENCES incident(incident_id)
+	FOREIGN KEY 	(incident_id) REFERENCES incident(incident_id),
 	FOREIGN KEY 	(handler) REFERENCES regUser(username)
 );
 
