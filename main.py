@@ -13,11 +13,13 @@ entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
 #11/27/2021, Let's work on signing up to the database.
 
 #This will get the specified user key to use for identifying and getting username/password
-# def getUserIdentifier(username): #Trying to get the username identifier by passing the username as a parameter and going through the dict
-#     for key in entireUserDatabase: #Go through the dictionary
-#         if entireUserDatabase[key]["username"] == username: #If the username is equal to a username, then return that key.
-#             return key
-#     return False
+def getUserIdentifier(username): #Trying to get the username identifier by passing the username as a parameter and going through the dict
+    global entireUserDatabase
+    entireUserDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
+    for key in entireUserDatabase: #Go through the dictionary
+        if entireUserDatabase[key]["username"] == username: #If the username is equal to a username, then return that key.
+            return key
+    return False
 
 def correctUsernamePassword(username, password):
     for key in entireUserDatabase: #Search the entire database for the user and password
@@ -48,8 +50,26 @@ def addUser(firstName, lastName, username, password):
     entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")  # Update the dictionary
     return True
 
-
-
+#Add a ticket to the database
+def addTicket(firstName, lastName, date, ticketCategory, title, details, occurrenceRate):
+    global entireTicketDatabase
+    entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
+    ticketNumber = entireTicketDatabase["-MpSFedLdYbML5FYVBmr"]["ticketNumber"] #The current ticket number, increase by 1 for every new ticket, stored in database?
+    tickets.put("it-tickets-51e5b-default-rtdb/-MpSFedLdYbML5FYVBmr", "ticketNumber", ticketNumber + 1) #Increase the ticket number by 1
+    ticketString = f"Ticket number {'0' * (4 - len(str(ticketNumber))) + str(ticketNumber)}" #Ensures there's always a leading 0 if needed. Max is 9999 tickets
+    ticketData = { #Ticket data from the HTML code.
+        "ticketNumber": ticketString,
+        "firstName": firstName,
+        "lastName": lastName,
+        "date": date,
+        "ticketCategory": ticketCategory,
+        "title": title,
+        "details": details,
+        "occurrenceRate": occurrenceRate
+    }
+    tickets.post("it-tickets-51e5b-default-rtdb", ticketData) #Add it to the database.
+    entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None) #Update the entire ticket database.
+    return True
 
 @ticketWebsite.route("/") #Homepage
 def defaultPage():
@@ -87,9 +107,21 @@ def registerPage():
     else:
         return render_template("register.html") #Renders the document.
 
-@ticketWebsite.route("/recordIT.html") #Record the ticket
+@ticketWebsite.route("/recordIT.html", methods=["POST", "GET"]) #Record the ticket
 def recordITPage():
-    return render_template("recordIT.html") #Renders the document.
+    if request.method == "POST": #After submitting the data
+        firstName = request.form["firstname"]
+        lastName = request.form["lastname"]
+        date = request.form["date"]
+        category = request.form["category"]
+        title = request.form["title"]
+        details = request.form["notes"]
+        occurrenceRate = request.form["occurrence"]
+        success = addTicket(firstName, lastName, date, category, title, details, occurrenceRate) #Add the ticket
+        if success:
+            return redirect(url_for("homePage"))
+    else:
+        return render_template("recordIT.html") #Renders the document.
 
 @ticketWebsite.route("/editticket.html") #Edit the ticket
 def editTicketPage():
