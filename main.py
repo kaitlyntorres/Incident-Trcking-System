@@ -9,23 +9,25 @@ users = firebase.FirebaseApplication("https://testing-7f9ce-default-rtdb.firebas
 tickets = firebase.FirebaseApplication("https://it-tickets-51e5b-default-rtdb.firebaseio.com/", None) #Connect to the tickets database
 entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "") #Get the entire dictionary set
 entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
-
+personSignedIn = {}
 #11/27/2021, Let's work on signing up to the database.
 
 #This will get the specified user key to use for identifying and getting username/password
 def getUserIdentifier(username): #Trying to get the username identifier by passing the username as a parameter and going through the dict
     global entireUserDatabase
-    entireUserDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
+    entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")
     for key in entireUserDatabase: #Go through the dictionary
         if entireUserDatabase[key]["username"] == username: #If the username is equal to a username, then return that key.
             return key
     return False
 
 def correctUsernamePassword(username, password):
+    global personSignedIn
     for key in entireUserDatabase: #Search the entire database for the user and password
         if entireUserDatabase[key]["username"] == username and entireUserDatabase[key]["password"] == password: #If they match...
-            return True #Return true!
-    return False #Or not...
+            personSignedIn = entireUserDatabase[key]
+            return True, personSignedIn #Return true!
+    return False, {} #Or not...
 
 #Add user will add a singular user to the database via the registration page.
 #Duplicate usernames will not be allowed.
@@ -51,12 +53,13 @@ def addUser(firstName, lastName, username, password):
     return True
 
 #Add a ticket to the database
-def addTicket(firstName, lastName, date, ticketCategory, title, details, occurrenceRate):
+def addTicket(firstName, lastName, date, ticketCategory, title, details, occurrenceRate, signedInUsername):
     global entireTicketDatabase
+    global entireUserDatabase
     entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
-    ticketNumber = entireTicketDatabase["-MpSFedLdYbML5FYVBmr"]["ticketNumber"] #The current ticket number, increase by 1 for every new ticket, stored in database?
-    tickets.put("it-tickets-51e5b-default-rtdb/-MpSFedLdYbML5FYVBmr", "ticketNumber", ticketNumber + 1) #Increase the ticket number by 1
-    ticketString = f"Ticket number {'0' * (4 - len(str(ticketNumber))) + str(ticketNumber)}" #Ensures there's always a leading 0 if needed. Max is 9999 tickets
+    ticketNumber = entireTicketDatabase["ticketNumber"] #The current ticket number, increase by 1 for every new ticket, stored in database?
+    tickets.put("it-tickets-51e5b-default-rtdb/", "ticketNumber", ticketNumber + 1) #Increase the ticket number by 1
+    ticketString = f"{'0' * (4 - len(str(ticketNumber))) + str(ticketNumber)}" #Ensures there's always a leading 0 if needed. Max is 9999 tickets
     ticketData = { #Ticket data from the HTML code.
         "ticketNumber": ticketString,
         "firstName": firstName,
@@ -68,23 +71,30 @@ def addTicket(firstName, lastName, date, ticketCategory, title, details, occurre
         "occurrenceRate": occurrenceRate
     }
     tickets.post("it-tickets-51e5b-default-rtdb", ticketData) #Add it to the database.
+    users.put(f"testing-7f9ce-default-rtdb/{signedInUsername}", f"tickets", #Add the ticket to the user.
+              ticketData)
     entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None) #Update the entire ticket database.
+    entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")  # Update the dictionary
     return True
 
 @ticketWebsite.route("/") #Homepage
 def defaultPage():
-    return render_template("homepage.html") #Renders the document.
+    return redirect(url_for("signInPage")) #Renders the document.
 
 @ticketWebsite.route("/homepage.html") #Actual Homepage
 def homePage():
+    if len(personSignedIn) == 0:
+        return redirect(url_for("signInPage"))
     return render_template("homepage.html") #Renders the document.
 
 @ticketWebsite.route("/signin.html", methods=["POST", "GET"]) #Sign In, needs POST/GET for retrieving the password
 def signInPage():
+    global personSignedIn
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"] #Get the username and password
-        if correctUsernamePassword(username, password): #Correct username/password
+        signInSuccess, personSignedIn = correctUsernamePassword(username, password) #Get the person who signed in.
+        if signInSuccess: #Correct username/password
             return redirect(url_for("homePage"))
         else: #Incorrect username/password
             return redirect(url_for("signInPage"))
@@ -109,6 +119,10 @@ def registerPage():
 
 @ticketWebsite.route("/recordIT.html", methods=["POST", "GET"]) #Record the ticket
 def recordITPage():
+    global personSignedIn
+    global entireUserDatabase
+    entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")  # Update the dictionary
+    signedInUsername = getUserIdentifier(personSignedIn["username"]) #Get the signedInUsername identifier to pass through the addTicket
     if request.method == "POST": #After submitting the data
         firstName = request.form["firstname"]
         lastName = request.form["lastname"]
@@ -117,7 +131,7 @@ def recordITPage():
         title = request.form["title"]
         details = request.form["notes"]
         occurrenceRate = request.form["occurrence"]
-        success = addTicket(firstName, lastName, date, category, title, details, occurrenceRate) #Add the ticket
+        success = addTicket(firstName, lastName, date, category, title, details, occurrenceRate, signedInUsername) #Add the ticket
         if success:
             return redirect(url_for("homePage"))
     else:
@@ -133,7 +147,8 @@ def viewReportsPage():
 
 @ticketWebsite.route("/viewtickets.html") #view the tickets
 def viewTicketsPage():
-    return render_template("viewtickets.html") #Renders the document.
+    return render_template("viewtickets.html", ticketDatabase=entireTicketDatabase) #Renders the document.
+
 
 
 if __name__ == "__main__": #Main python file
