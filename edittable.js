@@ -1,70 +1,62 @@
-function edit_row(num)
+function edit_row()
 {
- document.getElementById("edit_button"+num).style.display="";
- document.getElementById("save_button"+num).style.display="block";
+ document.getElementById("edit_button").style.display="";
+ document.getElementById("save_button").style.display="block";
 
 	
- var ticket=document.getElementById("ticket"+num);
- var status=document.getElementById("status"+num);
- var category=document.getElementById("category"+num);
- var title=document.getElementById("title"+num);
- var description=document.getElementById("description"+num);
- var pointofcontact=document.getElementById("pointofcontact"+num);
- var assignee=document.getElementById("assignee"+num);
- var dateopened=document.getElementById("dateopened"+num);
- var dateresolved=document.getElementById("dateresolved"+num);
+ var ticket=document.getElementById("ticket");
+ var status=document.getElementById("status");
+ var category=document.getElementById("category");
+ var title=document.getElementById("title");
+ var description=document.getElementById("details");
+ var pointofcontact=document.getElementById("pointofcontact");
+ var dateticket=document.getElementById("date");
+
 
 	
  var t=ticket.innerHTML;
  var s=status.innerHTML;
  var c=category.innerHTML;
  var t=title.innerHTML;
- var d=description.innerHTML;
+ var d=details.innerHTML;
  var poc=pointofcontact.innerHTML;
- var a=assignee.innerHTML;
- var dopen=dateopened.innerHTML;
- var dr=dateresolved.innerHTML;
+ var dt=dateticket.innerHTML;
+ 
 
 
 
 	
- ticket.innerHTML="<input type='text' id='textticket"+num+"' value='"+t+"'>";
- status.innerHTML="<input type='text' id='textstatus"+num+"' value='"+s+"'>";
- category.innerHTML="<input type='text' id='textcategory"+num+"' value='"+c+"'>";
- title.innerHTML="<input type='text' id='texttitle"+num+"' value='"+t+"'>";
- description.innerHTML="<input type='text' id='textdescription"+num+"' value='"+d+"'>";
- pointofcontact.innerHTML="<input type='text' id='textpointofcontact"+num+"' value='"+poc+"'>";
- assignee.innerHTML="<input type='text' id='textassignee"+num+"' value='"+a+"'>";
- dateopened.innerHTML="<input type='date' id='textdateopened"+num+"' value='"+dopen+"'>";
- dateresolved.innerHTML="<input type='date' id='textdateresolved"+num+"' value='"+dr+"'>";
+ ticket.innerHTML="<input type='text' id='textticket"+"' value='"+t+"'>";
+ status.innerHTML="<input type='text' id='textstatus"+"' value='"+s+"'>";
+ category.innerHTML="<input type='text' id='textcategory"+"' value='"+c+"'>";
+ title.innerHTML="<input type='text' id='texttitle"+"' value='"+t+"'>";
+ details.innerHTML="<input type='text' id='textdetails"+"' value='"+d+"'>";
+ pointofcontact.innerHTML="<input type='text' id='textpointofcontact"+"' value='"+poc+"'>";
+ dateticket.innerHTML="<input type='date' id='textdate"+"' value='"+dt+"'>";
 
 }
-function save_row(num)
+function save_row()
 {
     
-    var tval=document.getElementById("textticket"+num).value;
-    var sval=document.getElementById("textstatus"+num).value;
-    var cval=document.getElementById("textcategory"+num).value;
-    var t2val=document.getElementById("texttitle"+num).value;
-    var dval=document.getElementById("textdescription"+num).value;
-    var pocval=document.getElementById("textpointofcontact"+num).value;
-    var aval=document.getElementById("textassignee"+num).value;
-    var doval=document.getElementById("textdateopened"+num).value;
-    var drval=document.getElementById("textdateresolved"+num).value;
+    var tval=document.getElementById("textticket").value;
+    var sval=document.getElementById("textstatus").value;
+    var cval=document.getElementById("textcategory").value;
+    var t2val=document.getElementById("texttitle").value;
+    var dval=document.getElementById("textdetails").value;
+    var pocval=document.getElementById("textpointofcontact").value;
+    var dtval=document.getElementById("textdate").value;
 
 
-    document.getElementById("ticket"+num).innerHTML=tval;
-    document.getElementById("status"+num).innerHTML=sval;
-    document.getElementById("category"+num).innerHTML=cval;
-    document.getElementById("title"+num).innerHTML=t2val;
-    document.getElementById("description"+num).innerHTML=dval;
-    document.getElementById("pointofcontact"+num).innerHTML=pocval;
-    document.getElementById("assignee"+num).innerHTML=aval;
-    document.getElementById("dateopened"+num).innerHTML=doval;
-    document.getElementById("dateresolved"+num).innerHTML=drval;
+    document.getElementById("ticket").innerHTML=tval;
+    document.getElementById("status").innerHTML=sval;
+    document.getElementById("category").innerHTML=cval;
+    document.getElementById("title").innerHTML=t2val;
+    document.getElementById("details").innerHTML=dval;
+    document.getElementById("pointofcontact").innerHTML=pocval;
+    document.getElementById("dateticket").innerHTML=dtval;
 
-    document.getElementById("edit_button"+num).style.display="block";
-    document.getElementById("save_button"+num).style.display="none";
+    document.getElementById("edit_button").style.display="block";
+    document.getElementById("save_button").style.display="none";
 
 
 
