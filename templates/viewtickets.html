@@ -39,126 +39,56 @@
 </header>
 <!-- HEADER ENDS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
 
-<div style="padding:10px;">
-<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by Ticket ID...">
-<input type="text" id="myInput2" onkeyup="searchTable2()" placeholder="Search by Category...">
-<input type="text" id="myInput3" onkeyup="searchTable3()" placeholder="Search by Point of Contact...">
-</div>
-
 <div style="padding: 20px;">
-<table class="ticket_table" id="ticket_table" cellpadding="10" cellspacing="0">
+<table class="ticket_table" cellpadding="10" cellspacing="0">
 	<thead class="ticket_table_head">
-		<tr class="ticket_table_header">
-			<th>Ticket ID</th>
-			<th>Status</th>
-			<th>Category</th>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Point of Contact</th>
-			<th>Assignee</th>
-			<th>Date Opened</th>
-			<th>Date Resolved</th>
-			<th></th>
+		<tr>
+			<td>Ticket ID</td>
+			<td>Status</td>
+			<td>Category</td>
+			<td>Title</td>
+			<td>Description</td>
+			<td>Point of Contact</td>
+			<td>Date Opened</td>
+
+<!--			<td>Assignee</td>-->
+
+<!--			<td>Date Resolved</td>-->
+			<td></td>
 		</tr>
 	</thead>
 	<tbody class="ticket_table_body">
 <!-- THIS NEEDS TO CONNECT TO THE DATABASE -->
-		<tr class="ticket_table_row">
-			<td>1</td>
-			<td>Open</td>
-			<td>Software</td>
-			<td>This table doesn't work</td>
-			<td>This table needs to connect to the database.</td>
-			<td>Steph</td>
-			<td>Bella</td>
-			<td>11/24/21</td>
-			<td>N/A</td>
-			<td><a class="edititem" href="editticket.html">Edit</a></td>
-		</tr>
-		<tr class="ticket_table_row">
-			<td>2</td>
-			<td>Closed</td>
-			<td>Software</td>
-			<td>Create this table</td>
-			<td>This table needs to be created.</td>
-			<td>Steph</td>
-			<td>Steph</td>
-			<td>11/24/21</td>
-			<td>11/24/21</td>
-			<td><a class="edititem" href="editticket.html">Edit</a></td>
-		</tr>
+{% for key in ticketDatabase%}
+	{% if key != "ticketNumber" %}
+			<tr class="ticket_table_row">
+				<td>{{ticketDatabase[key]["ticketNumber"]}}</td>
+				<td>Open</td>
+				<td>{{ticketDatabase[key]["ticketCategory"]}}</td>
+				<td>{{ticketDatabase[key]["title"]}}</td>
+				<td>{{ticketDatabase[key]["details"]}}</td>
+				<td>{{ticketDatabase[key]["firstName"]}} {{ticketDatabase[key]["lastName"]}}</td>
+				<td>{{ticketDatabase[key]["date"]}}</td>
+				<td><a class="edititem" href="editticket.html">Edit</a></td>
+			</tr>
+	{% endif %}
+{% endfor %}
+<!--		<tr class="ticket_table_row">-->
+<!--			<td>2</td>-->
+<!--			<td>Closed</td>-->
+<!--			<td>Software</td>-->
+<!--			<td>Create this table</td>-->
+<!--			<td>This table needs to be created.</td>-->
+<!--			<td>Steph</td>-->
+<!--			<td>Steph</td>-->
+<!--			<td>11/24/21</td>-->
+<!--			<td>11/24/21</td>-->
+<!--			<td><a class="edititem" href="editticket.html">Edit</a></td>-->
+<!--		</tr>-->
 	</tbody>
 </table>
 
 </div>
 
 </div>
-
-<script>
-function searchTable() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("ticket_table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
-function searchTable2() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput2");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("ticket_table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
-function searchTable3() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput3");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("ticket_table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[5];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
 </html>
