@@ -60,11 +60,11 @@ function edit_row(rowNumber)
  status.innerHTML="<input type='text' id='textstatus"+rowNumber+"' value='"+s+"'>";
  category.innerHTML="<input type='text' id='textcategory"+rowNumber+"' value='"+c+"'>";
  title.innerHTML="<input type='text' id='texttitle"+rowNumber+"' value='"+t+"'>";
- assignee.innerHTML="<input type='text' id='textassignee"+rowNumber+"' value='"+t+"'>";
+ assignee.innerHTML="<input type='text' id='textassignee"+rowNumber+"' value='"+a+"'>";
  details.innerHTML="<input type='text' id='textdetails"+rowNumber+"' value='"+d+"'>";
  pointofcontact.innerHTML="<input type='text' id='textpointofcontact"+rowNumber+"' value='"+poc+"'>";
  dateticket.innerHTML="<input type='date' id='textdate"+rowNumber+"' value='"+dt+"'>";
- dateresolved.innerHTML="<input type='date' id='textdateresolved"+rowNumber+"' value='"+dt+"'>";
+ dateresolved.innerHTML="<input type='date' id='textdateresolved"+rowNumber+"' value='"+dr+"'>";
 
 }
 
