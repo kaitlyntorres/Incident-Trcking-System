@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-	<script type="text/javascript" src="edittable.js"></script>
-
+	<script type="text/javascript" src="../static/edittable.js"></script>
+	<title></title>
 </head>
 
 <div class="wrapper">
@@ -15,13 +15,13 @@
 <table style="padding-left: 20px; padding-right: 20px; text-align: center;">
 	<tr>
 		<td style="padding-left: 20px; padding-right: 20px;">
-		<p><img src="../assets/computer_logo.png" alt="computerlogo" width="125" height="125"/></p>
+		<p><img src="../static/computer_logo.png" alt="computerlogo" width="125" height="125"/></p>
 		</td>
 		<td style="padding-left: 20px; padding-right: 20px;">
 			<h2>Welcome to the SICK Issue Tracking System</h2>
 		</td>
 		<td style="padding-left: 20px; padding-right: 20px;">
-			<img src="../assets/SICKlogo.png" alt="SICKlogo" width="125" height="75"/></p>
+			<img src="../static/SICKlogo.png" alt="SICKlogo" width="125" height="75"/></p>
 		</td>
 	</tr>
 </table>
@@ -62,37 +62,26 @@
 <!-- THIS NEEDS TO CONNECT TO THE DATABASE -->
 {% for key in ticketDatabase%}
 	{% if key != "ticketNumber" %}
-			<tr class="ticket_table_row">
-				<td id="ticket">{{ticketDatabase[key]["ticketNumber"]}}</td>
-				<td id="status">Open</td>
-				<td id="category">{{ticketDatabase[key]["ticketCategory"]}}</td>
-				<td id="title">{{ticketDatabase[key]["title"]}}</td>
-				<td id="details">{{ticketDatabase[key]["details"]}}</td>
-				<td id="pointofcontact">{{ticketDatabase[key]["firstName"]}} {{ticketDatabase[key]["lastName"]}}</td>
-				<td id="date">{{ticketDatabase[key]["date"]}}</td>
+			<tr class="ticket_table_row{{loop.index}}">
+<!--				<script type="text/javascript" src="../static/edittable.js"></script>-->
+<!--				<td id="test">{{loop.index}}</td>-->
+				<td id="ticket{{loop.index}}">{{ticketDatabase[key]["ticketNumber"]}}</td>
+				<td id="status{{loop.index}}">Open</td>
+				<td id="category{{loop.index}}">{{ticketDatabase[key]["ticketCategory"]}}</td>
+				<td id="title{{loop.index}}">{{ticketDatabase[key]["title"]}}</td>
+				<td id="details{{loop.index}}">{{ticketDatabase[key]["details"]}}</td>
+				<td id="pointofcontact{{loop.index}}">{{ticketDatabase[key]["firstName"]}} {{ticketDatabase[key]["lastName"]}}</td>
+				<td id="date{{loop.index}}">{{ticketDatabase[key]["date"]}}</td>
 				<td>
-					<input type="button" id="edit_button" value="Edit" class="edit" onclick="edit_row()">
-					<input type="button" id="save_button" value="Save" class="save" onclick="save_row()">
+					<input type="button" id="edit_button{{loop.index}}" value="Edit" class="edit" onclick="edit_row('{{loop.index}}')">
+					<input type="button" id="save_button{{loop.index}}" value="Save" class="save" onclick="save_row('{{loop.index}}')">
 					</td>
-				
 			</tr>
 	{% endif %}
 {% endfor %}
-<!--		<tr class="ticket_table_row">-->
-<!--			<td>2</td>-->
-<!--			<td>Closed</td>-->
-<!--			<td>Software</td>-->
-<!--			<td>Create this table</td>-->
-<!--			<td>This table needs to be created.</td>-->
-<!--			<td>Steph</td>-->
-<!--			<td>Steph</td>-->
-<!--			<td>11/24/21</td>-->
-<!--			<td>11/24/21</td>-->
-<!--			<td><a class="edititem" href="editticket.html">Edit</a></td>-->
-<!--		</tr>-->
+
 	</tbody>
 </table>
-
 </div>
 
 </div>
