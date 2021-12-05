@@ -1,9 +1,10 @@
 #Team SICK Software Engineering Final Project
 #Hi everyone :D
+import time
 
 from flask import Flask, redirect, url_for, render_template, request  #Vital for setting up the websites.
 from firebase import firebase #Firebase database :D
-ticketWebsite = Flask(__name__) #Create the website
+ticketWebsite = Flask(__name__, static_folder='static', template_folder='templates') #Create the website
 
 users = firebase.FirebaseApplication("https://testing-7f9ce-default-rtdb.firebaseio.com/", None) #Connect to the users database
 tickets = firebase.FirebaseApplication("https://it-tickets-51e5b-default-rtdb.firebaseio.com/", None) #Connect to the tickets database
@@ -54,6 +55,8 @@ def addUser(firstName, lastName, username, password):
 
 #Add a ticket to the database
 def addTicket(firstName, lastName, date, ticketCategory, title, details, occurrenceRate, signedInUsername):
+    if len(personSignedIn) == 0:
+        return redirect(url_for("signInPage"))
     global entireTicketDatabase
     global entireUserDatabase
     entireTicketDatabase = tickets.get("it-tickets-51e5b-default-rtdb", None)
@@ -90,6 +93,7 @@ def homePage():
 @ticketWebsite.route("/signin.html", methods=["POST", "GET"]) #Sign In, needs POST/GET for retrieving the password
 def signInPage():
     global personSignedIn
+    personSignedIn = {}
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"] #Get the username and password
@@ -121,6 +125,8 @@ def registerPage():
 def recordITPage():
     global personSignedIn
     global entireUserDatabase
+    if len(personSignedIn) == 0:
+        return redirect(url_for("signInPage"))
     entireUserDatabase = users.get("testing-7f9ce-default-rtdb", "")  # Update the dictionary
     signedInUsername = getUserIdentifier(personSignedIn["username"]) #Get the signedInUsername identifier to pass through the addTicket
     if request.method == "POST": #After submitting the data
@@ -137,19 +143,19 @@ def recordITPage():
     else:
         return render_template("recordIT.html") #Renders the document.
 
-@ticketWebsite.route("/editticket.html") #Edit the ticket
-def editTicketPage():
-    return render_template("editticket.html") #Renders the document.
-
-@ticketWebsite.route("/viewreports.html") #view the reports
-def viewReportsPage():
-    return render_template("viewreports.html") #Renders the document.
-
-@ticketWebsite.route("/viewtickets.html") #view the tickets
+@ticketWebsite.route("/viewtickets.html", methods=["POST", "GET"]) #view the tickets
 def viewTicketsPage():
+    global personSignedIn
+    if len(personSignedIn) == 0:
+        return redirect(url_for("signInPage"))
+    # if request.method == "POST":
+    #     print(request.form["test123"])
+    #     time.sleep(3)
+    #     return redirect(url_for("viewTicketsPage"))
+    # else:
     return render_template("viewtickets.html", ticketDatabase=entireTicketDatabase) #Renders the document.
 
 
-
 if __name__ == "__main__": #Main python file
+
     ticketWebsite.run() #Start the website
