@@ -41,63 +41,59 @@
 <!-- HEADER ENDS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
 
 <div style="padding: 20px;">
-	<table class="ticket_table" cellpadding="10" cellspacing="0">
-		<thead class="ticket_table_head">
-			<tr>
-				<td>Ticket ID</td>
-				<td>Status</td>
-				<td>Category</td>
-				<td>Title</td>
-				<td>Description</td>
-				<td>Point of Contact</td>
-				<td>Assignee</td>
-				<td>Date Opened</td>
-				<td>Date Resolved</td>
-				<td></td>
-			</tr>
-		</thead>
+<table class="ticket_table" cellpadding="10" cellspacing="0">
+	<thead class="ticket_table_head">
+		<tr>
+			<td>Ticket ID</td>
+			<td>Status</td>
+			<td>Category</td>
+			<td>Title</td>
+			<td>Description</td>
+			<td>Point of Contact</td>
+			<td>Date Opened</td>
+
+<!--			<td>Assignee</td>-->
+
+<!--			<td>Date Resolved</td>-->
+			<td></td>
+		</tr>
+	</thead>
 	<tbody class="ticket_table_body">
 <!-- THIS NEEDS TO CONNECT TO THE DATABASE -->
-		<tr class="ticket_table_row">
-			<td id="ticket1">1</td>
-			<td id="status1">Open</td>
-			<td id="category1">Software</td>
-			<td id="title1">This table doesn't work</td>
-			<td id="description1">This table needs to connect to the database.</td>
-			<td id="pointofcontact1">Steph</td>
-			<td id="assignee1">Bella</td>
-			<td id="dateopened1">11/24/21</td>
-			<td id="dateresolved1">N/A</td>
-			<td>
-				<input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
-				<input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')">
-				</td>
-			
-		</tr>
-		<tr class="ticket_table_row">
-			<td id="ticket2">2</td>
-			<td id="status2">Closed</td>
-			<td id="category2">Software</td>
-			<td id="title2">Create this table</td>
-			<td id="description2">This table needs to connect to the database.</td>
-			<td id="pointofcontact2">Steph</td>
-			<td id="assignee2">Kaitlyn</td>
-			<td id="dateopened2">11/24/21</td>
-			<td id="dateresolved2">11/24/21</td>
-			<td>
-				<input type="button" id="edit_button2" value="Edit" class="edit" onclick="edit_row('2')">
-				<input type="button" id="save_button2" value="Save" class="save" onclick="save_row('2')">
-				</td>
-		</tr>
+{% for key in ticketDatabase%}
+	{% if key != "ticketNumber" %}
+			<tr class="ticket_table_row">
+				<td id="ticket">{{ticketDatabase[key]["ticketNumber"]}}</td>
+				<td id="status">Open</td>
+				<td id="category">{{ticketDatabase[key]["ticketCategory"]}}</td>
+				<td id="title">{{ticketDatabase[key]["title"]}}</td>
+				<td id="details">{{ticketDatabase[key]["details"]}}</td>
+				<td id="pointofcontact">{{ticketDatabase[key]["firstName"]}} {{ticketDatabase[key]["lastName"]}}</td>
+				<td id="date">{{ticketDatabase[key]["date"]}}</td>
+				<td>
+					<input type="button" id="edit_button" value="Edit" class="edit" onclick="edit_row()">
+					<input type="button" id="save_button" value="Save" class="save" onclick="save_row()">
+					</td>
+				
+			</tr>
+	{% endif %}
+{% endfor %}
+<!--		<tr class="ticket_table_row">-->
+<!--			<td>2</td>-->
+<!--			<td>Closed</td>-->
+<!--			<td>Software</td>-->
+<!--			<td>Create this table</td>-->
+<!--			<td>This table needs to be created.</td>-->
+<!--			<td>Steph</td>-->
+<!--			<td>Steph</td>-->
+<!--			<td>11/24/21</td>-->
+<!--			<td>11/24/21</td>-->
+<!--			<td><a class="edititem" href="editticket.html">Edit</a></td>-->
+<!--		</tr>-->
 	</tbody>
 </table>
 
-
 </div>
-
-
-
-
 
 </div>
 </html>
