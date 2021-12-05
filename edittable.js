@@ -1,67 +1,93 @@
-function edit_row()
+// Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+//
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyClJ09Xuohg0AGyYuJ4iUPMMuz8_hLiIh8",
+//   authDomain: "it-tickets-51e5b.firebaseapp.com",
+//   databaseURL: "https://it-tickets-51e5b-default-rtdb.firebaseio.com",
+//   projectId: "it-tickets-51e5b",
+//   storageBucket: "it-tickets-51e5b.appspot.com",
+//   messagingSenderId: "215099357702",
+//   appId: "1:215099357702:web:f73c6f27413a5ac581e187",
+//   measurementId: "G-EMF6HX575Y"
+// };
+//
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
+
+
+
+
+
+function edit_row(rowNumber)
 {
- document.getElementById("edit_button").style.display="";
- document.getElementById("save_button").style.display="block";
-
-	
- var ticket=document.getElementById("ticket");
- var status=document.getElementById("status");
- var category=document.getElementById("category");
- var title=document.getElementById("title");
- var description=document.getElementById("details");
- var pointofcontact=document.getElementById("pointofcontact");
- var dateticket=document.getElementById("date");
+    // var plzWork = rowNumber
+    // console.log(plzWork)
+ document.getElementById("edit_button"+rowNumber).style.display="";
+ document.getElementById("save_button"+rowNumber).style.display="block";
 
 
-	
- var t=ticket.innerHTML;
+ var ticket=document.getElementById("ticket"+rowNumber);
+ var status=document.getElementById("status"+rowNumber);
+ var category=document.getElementById("category"+rowNumber);
+ var title=document.getElementById("title"+rowNumber);
+ var details=document.getElementById("details"+rowNumber);
+ var pointofcontact=document.getElementById("pointofcontact"+rowNumber);
+ var dateticket=document.getElementById("date"+rowNumber);
+
+
+
+ var ti=ticket.innerHTML;
  var s=status.innerHTML;
  var c=category.innerHTML;
  var t=title.innerHTML;
  var d=details.innerHTML;
  var poc=pointofcontact.innerHTML;
  var dt=dateticket.innerHTML;
- 
 
 
-
-	
- ticket.innerHTML="<input type='text' id='textticket"+"' value='"+t+"'>";
- status.innerHTML="<input type='text' id='textstatus"+"' value='"+s+"'>";
- category.innerHTML="<input type='text' id='textcategory"+"' value='"+c+"'>";
- title.innerHTML="<input type='text' id='texttitle"+"' value='"+t+"'>";
- details.innerHTML="<input type='text' id='textdetails"+"' value='"+d+"'>";
- pointofcontact.innerHTML="<input type='text' id='textpointofcontact"+"' value='"+poc+"'>";
- dateticket.innerHTML="<input type='date' id='textdate"+"' value='"+dt+"'>";
+ ticket.innerHTML="<input type='text' id='textticket"+rowNumber+"' value='"+ti+"'>";
+ status.innerHTML="<input type='text' id='textstatus"+rowNumber+"' value='"+s+"'>";
+ category.innerHTML="<input type='text' id='textcategory"+rowNumber+"' value='"+c+"'>";
+ title.innerHTML="<input type='text' id='texttitle"+rowNumber+"' value='"+t+"'>";
+ details.innerHTML="<input type='text' id='textdetails"+rowNumber+"' value='"+d+"'>";
+ pointofcontact.innerHTML="<input type='text' id='textpointofcontact"+rowNumber+"' value='"+poc+"'>";
+ dateticket.innerHTML="<input type='date' id='textdate"+rowNumber+"' value='"+dt+"'>";
 
 }
-function save_row()
+
+function save_row(rowNumber)
 {
-    
-    var tval=document.getElementById("textticket").value;
-    var sval=document.getElementById("textstatus").value;
-    var cval=document.getElementById("textcategory").value;
-    var t2val=document.getElementById("texttitle").value;
-    var dval=document.getElementById("textdetails").value;
-    var pocval=document.getElementById("textpointofcontact").value;
-    var dtval=document.getElementById("textdate").value;
 
 
-    document.getElementById("ticket").innerHTML=tval;
-    document.getElementById("status").innerHTML=sval;
-    document.getElementById("category").innerHTML=cval;
-    document.getElementById("title").innerHTML=t2val;
-    document.getElementById("details").innerHTML=dval;
-    document.getElementById("pointofcontact").innerHTML=pocval;
-    document.getElementById("dateticket").innerHTML=dtval;
 
-    document.getElementById("edit_button").style.display="block";
-    document.getElementById("save_button").style.display="none";
+
+    var tval=document.getElementById("textticket"+rowNumber).value;
+    var sval=document.getElementById("textstatus"+rowNumber).value;
+    var cval=document.getElementById("textcategory"+rowNumber).value;
+    var t2val=document.getElementById("texttitle"+rowNumber).value;
+    var dval=document.getElementById("textdetails"+rowNumber).value;
+    var pocval=document.getElementById("textpointofcontact"+rowNumber).value;
+    var dtval=document.getElementById("textdate"+rowNumber).value;
+
+
+
+    document.getElementById("ticket"+rowNumber).innerHTML=tval;
+    document.getElementById("status"+rowNumber).innerHTML=sval;
+    document.getElementById("category"+rowNumber).innerHTML=cval;
+    document.getElementById("title"+rowNumber).innerHTML=t2val;
+    document.getElementById("details"+rowNumber).innerHTML=dval;
+    document.getElementById("pointofcontact"+rowNumber).innerHTML=pocval;
+    document.getElementById("dateticket"+rowNumber).innerHTML=dtval;
+
+
 
 
 
 }
-
-
-
-
