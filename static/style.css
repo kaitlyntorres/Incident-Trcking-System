@@ -1,0 +1,266 @@
+body {
+	background-color: #003366;
+}
+
+
+.page_header {
+	background-color: white;
+	display: block;
+	height: auto;
+	min-width: 120px;
+	width: auto;
+	align-items: center;
+	color: #fff;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: #1E7587;
+}
+
+ul.level1 {
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 30px;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	align: center;
+	text-shadow: none;
+}
+
+.menu {
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	height: 25px;
+	background-image: linear-gradient(white, #EAEAEA);
+	padding: 20px;
+	display: flex;
+}
+
+#menu li {
+	display: inline;
+	padding: 30px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.menuitem:link {
+	color: #991717;
+	text-decoration: none;
+}
+
+.menuitem:visited {
+	color: #991717;
+	text-decoration: none;
+}
+
+.menuitem:hover {
+	color: #991717;
+	text-decoration: none;
+	text-shadow: #A2A2A2 0 0 .2em;
+}
+
+.menuitem:active {
+	color: #991717;
+	text-decoration: none;
+}
+
+
+ul.level1 {
+	display: table;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+h1 {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1020px;
+	padding: 10px;
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	background-color: white;
+	
+}
+
+.homepage_div {
+	display: inline-block;
+	padding: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+
+.news_div {
+	background-color: #E4ECEE;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-top: 5px;
+	border-radius: 10px;
+	border: 2px solid #1E7587;
+}
+
+.ticket_detail_div {
+	display: inline-block;
+	padding: 10px;
+}
+
+.ticket_div {
+	display: block;
+	background-color: #E4ECEE;
+	border: 2px solid #1E7587;
+	width: 500px;
+	height: auto;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #A2A2A2;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+.login_div {
+	display: block;
+	background-color: #CCCCCC;
+	width: 325px;
+	height: 225px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #272b35;
+}
+
+.login_in {
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	width: 300px;
+	padding: 5px;
+	margin: 5px;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+.register_form {
+	display: block;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+}
+
+#first {
+	float: left;
+}
+
+.register_div {
+	font-family: 'Open Sans', sans-serif;
+	overflow: hidden;
+	display: block;
+	background-color: #CCCCCC;
+	width: 325px;
+	height: 375px;
+	align-items: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 0 auto;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 4px 3px 8px 1px #272b35;
+}
+
+
+
+
+.small-button {
+	width: 50px;
+	height: 25px;
+}
+
+.medium-button {
+	width: 275px;
+	height: 35px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	background-color: #E78035;
+}
+
+input {
+	resize: horizontal;
+	width: 70px;
+	height: 25px;
+}
+
+#myInput{
+	width: 150px;
+}
+#myInput2{
+	width: 150px;
+}
+#myInput3{
+	width: 150px;
+}
+
+.ticket_table {
+	border: 2px solid #1E7587;
+	table-layout: auto;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.ticket_table_head {
+	background-color: #B1CFD6;
+	border-collapse: collapse;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.ticket_table_body {
+	padding: 10px;
+}
+
+.ticket_table_row {
+	line-height: 30px;
+}
+
+.ticket_table_row:nth-child(even) {
+	background-color: #E4ECEE;
+}
+
+.ticket_table_row:hover {
+	background-color: #CADFE3;
+}
+
+
+.edititem:link {
+	color: #1E7587;
+}
+
+.edititem:visited {
+	color: #1E7587;
+}
+
+.edititem:active {
+	color: blue;
+}

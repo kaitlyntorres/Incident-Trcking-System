@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="../static/style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<script type="text/javascript" src="../static/edittable.js"></script>
+	<title></title>
+</head>
+
+<div class="wrapper">
+
+<!-- HEADER STARTS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
+<header class="page_header">
+<div style="align-items: center;">
+<table style="padding-left: 20px; padding-right: 20px; text-align: center;">
+	<tr>
+		<td style="padding-left: 20px; padding-right: 20px;">
+		<p><img src="../static/computer_logo.png" alt="computerlogo" width="125" height="125"/></p>
+		</td>
+		<td style="padding-left: 20px; padding-right: 20px;">
+			<h2>Welcome to the SICK Issue Tracking System</h2>
+		</td>
+		<td style="padding-left: 20px; padding-right: 20px;">
+			<img src="../static/SICKlogo.png" alt="SICKlogo" width="125" height="75"/></p>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div class="menu" id="menu">
+<ul class="level1">
+	<li><a class="menuitem" title="Home" href="homepage.html">Home</a></li>
+	<li><a class="menuitem" title="Create Ticket" href="recordIT.html">Create New Ticket</a></li>
+	<li><a class="menuitem" title="View Tickets" href="viewtickets.html">View Tickets</a></li>
+	<li><a class="menuitem" title="Logout" href="signin.html">Logout</a></li>
+</ul>
+</div>
+
+</header>
+<!-- HEADER ENDS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
+
+<div style="padding:10px;">
+<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by Ticket ID...">
+<input type="text" id="myInput2" onkeyup="searchTable2()" placeholder="Search by Category...">
+<input type="text" id="myInput3" onkeyup="searchTable3()" placeholder="Search by Point of Contact...">
+</div>
+
+<div style="padding: 20px;">
+<table class="ticket_table" id="ticket_table" cellpadding="10" cellspacing="0">
+	<thead class="ticket_table_head">
+		<tr class="ticket_table_header">
+			<th>Ticket ID</th>
+			<th>Status</th>
+			<th>Category</th>
+			<th>Title</th>
+			<th>Assignee</th>
+			<th>Description</th>
+			<th>Point of Contact</th>
+			<th>Date Opened</th>
+			<th>Date Resolved</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody class="ticket_table_body">
+<!-- THIS NEEDS TO CONNECT TO THE DATABASE -->
+{% for key in ticketDatabase%}
+	{% if key != "ticketNumber" %}
+			<tr class="ticket_table_row{{loop.index}}">
+<!--				<script type="text/javascript" src="../static/edittable.js"></script>-->
+<!--				<td id="test">{{loop.index}}</td>-->
+				<td id="ticket{{loop.index}}">{{ticketDatabase[key]["ticketNumber"]}}</td>
+				<td id="status{{loop.index}}">Open</td>
+				<td id="category{{loop.index}}">{{ticketDatabase[key]["ticketCategory"]}}</td>
+				<td id="title{{loop.index}}">{{ticketDatabase[key]["title"]}}</td>
+				<td id="assignee{{loop.index}}">N/A</td>
+				<td id="details{{loop.index}}">{{ticketDatabase[key]["details"]}}</td>
+				<td id="pointofcontact{{loop.index}}">{{ticketDatabase[key]["firstName"]}} {{ticketDatabase[key]["lastName"]}}</td>
+				<td id="date{{loop.index}}">{{ticketDatabase[key]["date"]}}</td>
+				<td id="dateresolved{{loop.index}}">N/A</td>
+				<td>
+					<input type="button" id="edit_button{{loop.index}}" value="Edit" class="edit" onclick="edit_row('{{loop.index}}')">
+					<input type="button" id="save_button{{loop.index}}" value="Save" class="save" onclick="save_row('{{loop.index}}')">
+					</td>
+			</tr>
+	{% endif %}
+{% endfor %}
+
+	</tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+function searchTable() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchTable2() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchTable3() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput3");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+</html>
