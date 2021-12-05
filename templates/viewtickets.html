@@ -40,22 +40,25 @@
 </header>
 <!-- HEADER ENDS HERE - COPY AND PASTE THE WHOLE THING IF EDITED -->
 
+<div style="padding:10px;">
+<input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search by Ticket ID...">
+<input type="text" id="myInput2" onkeyup="searchTable2()" placeholder="Search by Category...">
+<input type="text" id="myInput3" onkeyup="searchTable3()" placeholder="Search by Point of Contact...">
+</div>
+
 <div style="padding: 20px;">
 <table class="ticket_table" cellpadding="10" cellspacing="0">
 	<thead class="ticket_table_head">
-		<tr>
-			<td>Ticket ID</td>
-			<td>Status</td>
-			<td>Category</td>
-			<td>Title</td>
-			<td>Description</td>
-			<td>Point of Contact</td>
-			<td>Date Opened</td>
-
-<!--			<td>Assignee</td>-->
-
-<!--			<td>Date Resolved</td>-->
-			<td></td>
+		<tr class="ticket_table_header">
+			<th>Ticket ID</th>
+			<th>Status</th>
+			<th>Category</th>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Point of Contact</th>
+			<th>Date Opened</th>
+			<th>Date Resolved</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody class="ticket_table_body">
@@ -87,4 +90,72 @@
 </div>
 
 </div>
+
+<script>
+function searchTable() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchTable2() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchTable3() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput3");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ticket_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 </html>
