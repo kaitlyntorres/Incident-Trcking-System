@@ -74,7 +74,9 @@
 				<td id="date{{loop.index}}">{{ticketDatabase[key]["date"]}}</td>
 				<td>
 					<input type="button" id="edit_button{{loop.index}}" value="Edit" class="edit" onclick="edit_row('{{loop.index}}')">
-					<input type="button" id="save_button{{loop.index}}" value="Save" class="save" onclick="save_row('{{loop.index}}')">
+					<form action="" method="post">
+						<input type="button" id="save_button{{loop.index}}" value="Save" formmethod="post" class="save" onclick="save_row('{{loop.index}}')">
+					</form>
 					</td>
 			</tr>
 	{% endif %}
