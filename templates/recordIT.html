@@ -48,12 +48,12 @@
 		<h2>IT Service Ticket</h2>
 		<div class="ticket_detail_div">
 			Name
-			<input type="text" class="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/>
-			<input type="text" class="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/>
+			<input type="text" class="firstname", name="firstname" placeholder="First Name" size="25" maxlength="100" id="firstname" required/>
+			<input type="text" class="lastname", name="lastname" placeholder="Last Name" size="25" maxlength="100" id="lastname" required/>
 		</div>
 		<div class="ticket_detail_div">
 			Date
-			<input type="date" class="date"  min="2020-01-01"  id="date" required/></p>
+			<input type="date", name="date" class="date"  min="2020-01-01"  id="date" required/></p>
 		</div>
 		<div class="ticket_detail_div">
 			Ticket Category
@@ -64,12 +64,23 @@
 				<option value="product">Production</option>
 				<option value="other">Other</option>
 				</select>
-			<button type="button">Add New Category</button>
 		</div>	
 		<div class="ticket_detail_div">
+			Title
+			<input type="text", name="title" class="title" placeholder="Summary of Ticket" size="25" maxlength="100" id="title" required/>
 			<p>Details</p>
-			<p><textarea name="notes" rows="10" cols="50"></textarea></p>
-		</div>	
+			<p><textarea name="notes" rows="10" cols="35"></textarea></p>
+		</div>
+		
+		<div class="ticket_detail_div">
+			Approximate Occurence of IT Ticket
+				<select id="occurrence" name="occurrence">
+				<option value="25%">25%</option>
+				<option value="50%">50%</option>
+				<option value="75%">75%</option>
+				<option value="100%">100%</option>
+				</select>
+		</div>
 		<div class="ticket_detail_div">
 			<input type="submit" class="medium-button">
 		</div>
